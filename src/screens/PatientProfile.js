@@ -53,11 +53,10 @@ const PatientProfile = (props) => {
         password
       );
       alert(response.message);
-      // if (response.status)
-      //   props.navigation.navigate("Welcome", {
-      //     user,
-      //     name: response.body.name,
-      //   });
+      if (response.status)
+        props.navigation.navigate("Main", {
+          user: response.body,
+        });
     }
   };
 
