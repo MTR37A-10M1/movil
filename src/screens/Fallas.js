@@ -64,7 +64,10 @@ const ContactUs = (props) => {
           mode="dropdown"
           style={styles.Input}
           selectedValue={idFalla}
-          onValueChange={(idFalla) => IdFalla(idFalla)}
+          onValueChange={(idFalla) => {
+            IdFalla(idFalla);
+            Descripcion(fallas[idFalla - 1].descripcion);
+          }}
         >
           {fallas.map((f, i) => {
             return <Picker.Item label={f.id.toString()} value={f.id} key={i} />;
