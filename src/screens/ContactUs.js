@@ -26,7 +26,14 @@ const ContactUs = (props) => {
 
   const Reportar = async () => {
     const response = await ajax.addFalla(descripcion, idMaquina, 1);
-    console.log(response);
+    const fallas = await ajax.fallas();
+    if (fallas.status) props.setFallas(fallas.body);
+    alert(response.message);
+  };
+
+  const RefreshMaquinas = async () => {
+    const response = await ajax.equipos();
+    if (response.status) props.setEquipos(response.body);
     alert(response.message);
   };
 
@@ -45,10 +52,7 @@ const ContactUs = (props) => {
           </Text>
         </Body>
         <Right>
-          <Icon
-            name="cart"
-            onPress={() => props.navigation.navigate("MyOrders")}
-          ></Icon>
+          <Icon name="cart" onPress={RefreshMaquinas}></Icon>
         </Right>
       </Header>
       <View style={styles.ContactUs}>

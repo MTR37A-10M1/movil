@@ -34,6 +34,12 @@ const ContactUs = (props) => {
     alert(response.message);
   };
 
+  const RefreshFallas = async () => {
+    const response = await ajax.fallas();
+    if (response.status) props.setFallas(response.body);
+    alert(response.message);
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <Header>
@@ -49,10 +55,7 @@ const ContactUs = (props) => {
           </Text>
         </Body>
         <Right>
-          <Icon
-            name="cart"
-            onPress={() => props.navigation.navigate("MyOrders")}
-          ></Icon>
+          <Icon name="cart" onPress={RefreshFallas}></Icon>
         </Right>
       </Header>
       <View style={styles.ContactUs}>
